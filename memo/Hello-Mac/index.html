@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Text_Wong
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Hello Mac
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h2 id="mac使用记录"><a href="#mac使用记录" class="headerlink" title="mac使用记录"></a>mac使用记录</h2><blockquote>
+<p>之前装的黑果出了问题，一些应用没有备份，还有一些环境，于是整理了一份文档，记录一下</p>
+<p>文章从安装完系统开始记录，白果用户也可以参考</p>
+<p><a href="https://github.com/jaywcjlove/awesome-mac/blob/master/README-zh.md" target="_blank" rel="noopener">https://github.com/jaywcjlove/awesome-mac/blob/master/README-zh.md</a></p>
+<p><a href="https://aaaaaashu.gitbooks.io/mac-dev-setup/content/" target="_blank" rel="noopener">https://aaaaaashu.gitbooks.io/mac-dev-setup/content/</a></p>
+</blockquote>
+<h3 id="安装homebrew"><a href="#安装homebrew" class="headerlink" title="安装homebrew"></a>安装<code>homebrew</code></h3><p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/image-20200315180243981.png" alt="image-20200315180243981"></p>
+<p>前提是你的网络环境<strong>必须</strong>得好，不然很痛苦的，建议有条件的童鞋进行这个小节的内容，如果网络环境不好会比较痛苦</p>
+<ol>
+<li><p>安装<code>homebrew</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">官方给出的地址：</span><br><span class="line">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"</span><br><span class="line"></span><br><span class="line">使用cdn代理：</span><br><span class="line">/bin/bash -c "$(curl -fsSL https://cdn.jsdelivr.net/gh/Homebrew/install@master/install.sh)"</span><br></pre></td></tr></table></figure>
+
+<p>安装图示</p>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/brewinstall.png" alt="brewinstall"></p>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/brewinstallb.png" alt="brewinstallb"></p>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/brewinstallc.png" alt="brewinstallc"></p>
+</li>
+<li><p>安装<code>brew cask</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew tap homebrew/cask</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装<code>cask-fonts</code>和<code>cask-drivers</code>（选装）</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew tap homebrew/cask-fonts</span><br><span class="line">brew tap homebrew/cask-drivers</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>替换为清华源，方便更新（有条件的可以不用）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">Homebrew 的 formula 索引的镜像</span></span><br><span class="line"><span class="meta">#</span><span class="bash">brew 程序本身</span></span><br><span class="line">git -C "$(brew --repo)" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 以下针对 mac OS 系统上的 Homebrew</span></span><br><span class="line">git -C "$(brew --repo homebrew/core)" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git</span><br><span class="line">git -C "$(brew --repo homebrew/cask)" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git</span><br><span class="line">git -C "$(brew --repo homebrew/cask-fonts)" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask-fonts.git</span><br><span class="line">git -C "$(brew --repo homebrew/cask-drivers)" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask-drivers.git</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 更换后测试工作是否正常</span></span><br><span class="line">brew update</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Homebrew 二进制预编译包的镜像</span></span><br><span class="line"><span class="meta">#</span><span class="bash">临时替换</span></span><br><span class="line">export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles</span><br><span class="line"><span class="meta">#</span><span class="bash">长期替换（安装完oh-my-zsh后重新替换）</span></span><br><span class="line">echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles' &gt;&gt; ~/.bash_profile</span><br><span class="line"><span class="meta">#</span><span class="bash">生效</span></span><br><span class="line">source ~/.bash_profile</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#前面实际上就是去/usr/local/Homebrew目录下把brew和brew-core的git路径给换了</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#后面是二进制源需要修改bashprofile文件改变量。</span></span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/brewinstalld.png" alt="brewinstalld"></p>
+<p>参考来源：<a href="https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/" target="_blank" rel="noopener">Homebrew/Linuxbrew 镜像使用帮助—清华大学开源软件镜像站</a></p>
+</li>
+</ol>
+<h3 id="安装常用软件"><a href="#安装常用软件" class="headerlink" title="安装常用软件"></a>安装常用软件</h3><blockquote>
+<p>首先安装<code>homebrew</code>的原因就是方便安装软件，这样就不用到各网站或者github去下载了，当然appstore中是首选，有一些个人开发者的不上架appstore，但是可以通过<code>brew cask install</code>安装</p>
+</blockquote>
+<ul>
+<li><p>软件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> chrome</span></span><br><span class="line">brew cask install google-chrome</span><br><span class="line"><span class="meta">#</span><span class="bash"> edge</span></span><br><span class="line">brew cask install microsoft-dege</span><br><span class="line"><span class="meta">#</span><span class="bash"> iterm</span></span><br><span class="line">brew cask install iterm2</span><br><span class="line"><span class="meta">#</span><span class="bash"> vscode</span></span><br><span class="line">brew cask install visual-studio-code</span><br><span class="line"><span class="meta">#</span><span class="bash"> SourceTree</span></span><br><span class="line">brew cask install sourcetree</span><br><span class="line"><span class="meta">#</span><span class="bash"> pdf</span></span><br><span class="line">brew cask install pdf-expert</span><br><span class="line"><span class="meta">#</span><span class="bash"> typora</span></span><br><span class="line">brew cask install typora</span><br><span class="line"><span class="meta">#</span><span class="bash"> copyQ</span></span><br><span class="line">brew cask install copyq</span><br><span class="line"><span class="meta">#</span><span class="bash"> upic</span></span><br><span class="line">brew cask install upic</span><br><span class="line"><span class="meta">#</span><span class="bash"> keka</span></span><br><span class="line">brew cask install keka</span><br><span class="line"><span class="meta">#</span><span class="bash"> dozer</span></span><br><span class="line">brew cask install dozer</span><br><span class="line"><span class="meta">#</span><span class="bash"> mos</span></span><br><span class="line">brew cask install mos</span><br><span class="line"><span class="meta">#</span><span class="bash"> utools</span></span><br><span class="line">brew cask install utools</span><br><span class="line"><span class="meta">#</span><span class="bash"> openinterminal(https://github.com/Ji4n1ng/OpenInTerminal)</span></span><br><span class="line">brew cask install openinterminal-lite</span><br><span class="line">brew cask install openineditor-lite</span><br><span class="line"><span class="meta">#</span><span class="bash"> switchhosts：utools中有插件完成同样的功能，但是这个应用可以自定义远程host，有些场景用得上</span></span><br><span class="line">brew cask install switchhosts</span><br></pre></td></tr></table></figure>
+
+<p>软件目录<code>/usr/local/Caskroom</code></p>
+<p>缓存清理：<code>brew update &amp;&amp; brew upgrade &amp;&amp; brew cleanup &amp;&amp; brew cleanup --prune 3</code></p>
+<p>命令指南：<a href="https://github.com/Homebrew/homebrew-cask/blob/master/USAGE.md" target="_blank" rel="noopener">How to Use Homebrew Cask</a></p>
+</li>
+<li><p>quicklook插件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize suspicious-package quicklookase qlvideo betterzip webpquicklook</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/image-20200315220641794.png" alt="image-20200315220641794"></p>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/image-20200315220721099.png" alt="image-20200315220721099"></p>
+<p>参考链接：</p>
+<p><a href="https://github.com/sindresorhus/quick-look-plugins" target="_blank" rel="noopener">quick-look-plugins</a></p>
+<p><a href="https://github.com/haokaiyang/Mac-QuickLook" target="_blank" rel="noopener">Mac-QuickLook</a></p>
+</li>
+</ul>
+<h3 id="安装语言环境"><a href="#安装语言环境" class="headerlink" title="安装语言环境"></a>安装语言环境</h3><h4 id="JDK"><a href="#JDK" class="headerlink" title="JDK"></a>JDK</h4><h3 id="Sourcetree跳过注册方法："><a href="#Sourcetree跳过注册方法：" class="headerlink" title="Sourcetree跳过注册方法："></a><code>Sourcetree</code>跳过注册方法：</h3><p>打开，关闭，打开终端输入<code>defaults write com.torusknot.SourceTreeNotMAS completedWelcomeWizardVersion 3</code></p>
+<h3 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h3><p><code>brew cask install adoptopenjdk8</code></p>
+<p>或者从<a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">Oracle官网</a>下载二进制安装包</p>
+<p><a href="https://zhuanlan.zhihu.com/p/34915988" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34915988</a></p>
+<h3 id="安装python3，同时保留python2（官方自带）"><a href="#安装python3，同时保留python2（官方自带）" class="headerlink" title="安装python3，同时保留python2（官方自带）"></a>安装python3，同时保留python2（官方自带）</h3><ul>
+<li><p>系统预装了python，进入<code>/系统/资源库/Frameworks/Python.framework/Versions</code>路径下可以看到</p>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/2019-07-21-7u2MiJ.png" alt="pic"></p>
+<p>这里有多个python版本，而在Current目录下存放的是系统当前的python版本。</p>
+<p>直接在终端运行<code>python</code>可以看到当前使用的版本是</p>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/image-20200315184639459.png" alt="image-20200315184639459"></p>
+</li>
+<li><p>安装<code>python3</code></p>
+<p>先用命令查询一下<code>brew search python3</code></p>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/2019-07-21-Yqi7pv.png" alt="search"></p>
+<p>可以查询到，直接安装<code>brew install python3</code></p>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/sEbQVt.png" alt="sEbQVt"></p>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/python1.png" alt="python1"></p>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/python2.png" alt="python2"></p>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/image-20200315203455461.png" alt="image-20200315203455461"></p>
+<p>安装完成，输入<code>python3</code>查看信息，然后输入<code>brew info python3</code>查看当前系统下的python3信息</p>
+<p>到这一步已经安装完成，在系统中同时可以使用两个版本的python了</p>
+</li>
+</ul>
+<h3 id="安装nodeJs"><a href="#安装nodeJs" class="headerlink" title="安装nodeJs"></a>安装nodeJs</h3><p><code>brew install node</code>，这种模式安装的是最新版的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ brew search node</span><br><span class="line">==&gt; Formulae</span><br><span class="line">libbitcoin-node              node                         node-sass                    node@12                      nodebrew                     nodenv</span><br><span class="line">llnode                       node-build                   node@10                      node_exporter                nodeenv</span><br><span class="line">==&gt; Casks</span><br><span class="line">font-ubuntu-mono-derivative-powerline       nodebox                                     nodeclipse                                  soundnode</span><br><span class="line"></span><br><span class="line">If you meant <span class="string">"node"</span> specifically:</span><br><span class="line">It was migrated from homebrew/cask to homebrew/core.</span><br><span class="line">➜  ~ brew search nodejs</span><br><span class="line">==&gt; Formulae</span><br><span class="line">node.js                                                                                  nodejs</span><br><span class="line">➜  ~ brew install node</span><br><span class="line">==&gt; Installing dependencies <span class="keyword">for</span> node: icu4c</span><br><span class="line">==&gt; Installing node dependency: icu4c</span><br><span class="line">==&gt; Downloading https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/bottles/icu4c-64.2.mojave.bottle.tar.gz</span><br><span class="line"><span class="comment">######################################################################## 100.0%</span></span><br><span class="line">==&gt; Pouring icu4c-64.2.mojave.bottle.tar.gz</span><br><span class="line">==&gt; Caveats</span><br><span class="line">icu4c is keg-only, <span class="built_in">which</span> means it was not symlinked into /usr/<span class="built_in">local</span>,</span><br><span class="line">because macOS provides libicucore.dylib (but nothing <span class="keyword">else</span>).</span><br><span class="line"></span><br><span class="line">If you need to have icu4c first <span class="keyword">in</span> your PATH run:</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">'export PATH="/usr/local/opt/icu4c/bin:$PATH"'</span> &gt;&gt; ~/.zshrc</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">'export PATH="/usr/local/opt/icu4c/sbin:$PATH"'</span> &gt;&gt; ~/.zshrc</span><br><span class="line"></span><br><span class="line">For compilers to find icu4c you may need to <span class="built_in">set</span>:</span><br><span class="line">  <span class="built_in">export</span> LDFLAGS=<span class="string">"-L/usr/local/opt/icu4c/lib"</span></span><br><span class="line">  <span class="built_in">export</span> CPPFLAGS=<span class="string">"-I/usr/local/opt/icu4c/include"</span></span><br><span class="line"></span><br><span class="line">==&gt; Summary</span><br><span class="line">🍺  /usr/<span class="built_in">local</span>/Cellar/icu4c/64.2: 257 files, 69.2MB</span><br><span class="line">==&gt; Installing node</span><br><span class="line">==&gt; Downloading https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/bottles/node-13.11.0.mojave.bottle.tar.gz</span><br><span class="line"><span class="comment">######################################################################## 100.0%</span></span><br><span class="line">==&gt; Pouring node-13.11.0.mojave.bottle.tar.gz</span><br><span class="line">==&gt; Caveats</span><br><span class="line">Bash completion has been installed to:</span><br><span class="line">  /usr/<span class="built_in">local</span>/etc/bash_completion.d</span><br><span class="line">==&gt; Summary</span><br><span class="line">🍺  /usr/<span class="built_in">local</span>/Cellar/node/13.11.0: 4,686 files, 60.3MB</span><br><span class="line">==&gt; Caveats</span><br><span class="line">==&gt; icu4c</span><br><span class="line">icu4c is keg-only, <span class="built_in">which</span> means it was not symlinked into /usr/<span class="built_in">local</span>,</span><br><span class="line">because macOS provides libicucore.dylib (but nothing <span class="keyword">else</span>).</span><br><span class="line"></span><br><span class="line">If you need to have icu4c first <span class="keyword">in</span> your PATH run:</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">'export PATH="/usr/local/opt/icu4c/bin:$PATH"'</span> &gt;&gt; ~/.zshrc</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">'export PATH="/usr/local/opt/icu4c/sbin:$PATH"'</span> &gt;&gt; ~/.zshrc</span><br><span class="line"></span><br><span class="line">For compilers to find icu4c you may need to <span class="built_in">set</span>:</span><br><span class="line">  <span class="built_in">export</span> LDFLAGS=<span class="string">"-L/usr/local/opt/icu4c/lib"</span></span><br><span class="line">  <span class="built_in">export</span> CPPFLAGS=<span class="string">"-I/usr/local/opt/icu4c/include"</span></span><br><span class="line"></span><br><span class="line">==&gt; node</span><br><span class="line">Bash completion has been installed to:</span><br><span class="line">  /usr/<span class="built_in">local</span>/etc/bash_completion.d</span><br></pre></td></tr></table></figure>
+
+<p>或者直接从<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">官网</a>下载二进制文件</p>
+<p>安装淘宝镜像：<code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/2019-07-21-8YHUiE.png" alt="pic"></p>
+<h3 id="安装scala"><a href="#安装scala" class="headerlink" title="安装scala"></a>安装scala</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew search scala</span><br><span class="line">brew install scala</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/2019-07-21-Kggk5Z.png" alt="pic"></p>
+<h3 id="安装maven"><a href="#安装maven" class="headerlink" title="安装maven"></a>安装maven</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew search maven</span><br><span class="line">brew install maven</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/2019-07-21-Aca054.png" alt="pic"></p>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/2019-07-21-nSTCo4.png" alt="pic"></p>
+<h3 id="使用iTerm2终端"><a href="#使用iTerm2终端" class="headerlink" title="使用iTerm2终端"></a>使用<code>iTerm2</code>终端</h3><ol>
+<li><p>通过<a href="https://www.iterm2.com/" target="_blank" rel="noopener">官方网站</a>下载最新稳定版</p>
+<p>下载的是压缩文件，解压后是二进制安装程序，建议拖到<code>Application</code>目录下</p>
+</li>
+<li><p>直接使用<code>Hombrew</code>安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask install iterm2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置<code>oh-my-zsh</code></p>
+<ul>
+<li><p>安装<code>oh-my-zsh</code>：<code>sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</code></p>
+</li>
+<li><p>安装<code>PowerLine</code>：<code>pip3 install powerline-status --user</code>（因为安装过python3了，直接用就可以了）</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>   <img src="https://gitee.com/uibooker/ImgSync/raw/master/img/2019-08-19-image-20190721144633857.png" alt=""></p>
+<ul>
+<li><p>使用<code>JetBrainsMono</code>（推荐）</p>
+<p><a href="https://download.jetbrains.com/fonts/JetBrainsMono-1.0.3.zip" target="_blank" rel="noopener">下载字体</a>，解压安装，建议全选</p>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/image-20200322164433852.png" alt="image-20200322164433852"></p>
+</li>
+<li><p>安装<code>PowerFonts</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> git clone https://github.com/powerline/fonts.git</span><br><span class="line">cd fonts</span><br><span class="line"> ./install.sh</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/2019-07-21-JnEOWh.png" alt="pic"></p>
+</li>
+<li><p>更改iterm2字体<br><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/2019-07-21-2MmbRL.png" alt="pic"></p>
+</li>
+</ul>
+<ul>
+<li><p>更改配色方案<br>   <img src="https://gitee.com/uibooker/ImgSync/raw/master/img/2019-07-21-dMNKdj.png" alt="pic"></p>
+<ul>
+<li><p>主题推荐</p>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/image-20200322165450977.png" alt="image-20200322165450977"></p>
+<p><a href="https://github.com/sindresorhus/pure#install" target="_blank" rel="noopener">pure主题</a></p>
+<p>在REAMME.md文档里面有详细说明，可以<code>npm</code>全局安装，也可以单独在<code>.zshrc</code>文件里面配置</p>
+<p>tips：<strong>不要忘了最后的这个设置</strong></p>
+<blockquote>
+<ol>
+<li>Set <code>ZSH_THEME=&quot;&quot;</code> in your <code>.zshrc</code> to disable oh-my-zsh themes.</li>
+<li>Follow the Pure <a href="https://github.com/sindresorhus/pure#install" target="_blank" rel="noopener">Install</a> instructions.</li>
+<li>Do not enable the following (incompatible) plugins: <code>vi-mode</code>, <code>virtualenv</code>.</li>
+</ol>
+<p><strong>NOTE:</strong> <code>oh-my-zsh</code> overrides the prompt so Pure must be activated <em>after</em> <code>source $ZSH/oh-my-zsh.sh</code>.</p>
+</blockquote>
+</li>
+<li><p>安装插件</p>
+<p>语法高亮：<code>git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting</code></p>
+<p>自动补全：<code>git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions</code></p>
+<p>配置：<code>vi ~/.zshrc</code></p>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/2019-07-21-YGeCKX.png" alt="pic"></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>两个参考链接：<br>   <a href="https://www.jianshu.com/p/246b844f4449" target="_blank" rel="noopener">https://www.jianshu.com/p/246b844f4449</a></p>
+<p>   <a href="https://segmentfault.com/a/1190000014992947" target="_blank" rel="noopener">https://segmentfault.com/a/1190000014992947</a></p>
+<p>   少数派的一篇文章：<a href="https://sspai.com/post/53008" target="_blank" rel="noopener">https://sspai.com/post/53008</a></p>
+<h3 id="brew更换阿里镜像源"><a href="#brew更换阿里镜像源" class="headerlink" title="brew更换阿里镜像源"></a>brew更换阿里镜像源</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cd "$(brew --repo)"</span><br><span class="line">git remote set-url origin https://mirrors.aliyun.com/homebrew/brew.git</span><br><span class="line">cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"</span><br><span class="line">git remote set-url origin https://mirrors.aliyun.com/homebrew/homebrew-core.git</span><br><span class="line">echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles' &gt;&gt; ~/.bash_profile</span><br><span class="line">source ~/.bash_profile</span><br><span class="line"><span class="meta">#</span><span class="bash"> zsh用户</span></span><br><span class="line">echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles' &gt;&gt; ~/.zshrc</span><br><span class="line">source ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>前两步实际上就是去/usr/local/Homebrew目录下把brew和brew-core的git路径给换了，最后一步是二进制源需要修改bashprofile文件改变量。</p>
+</blockquote>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/2019-07-29-ne3PFq.png" alt="pic"></p>
+<ul>
+<li><p>换回官方源</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 重置brew.git:</span></span><br><span class="line">cd "$(brew --repo)"</span><br><span class="line">git remote set-url origin https://github.com/Homebrew/brew.git</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重置homebrew-core.git:</span></span><br><span class="line">cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"</span><br><span class="line">git remote set-url origin https://github.com/Homebrew/homebrew-core.git</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注释掉bash配置文件里的有关Homebrew Bottles即可恢复官方源。 重启bash或让bash重读配置文件。</p>
+</blockquote>
+</li>
+<li><p>清华源</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git -C "$(brew --repo)" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git</span><br><span class="line"></span><br><span class="line">git -C "$(brew --repo homebrew/core)" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git</span><br><span class="line"></span><br><span class="line">brew update</span><br></pre></td></tr></table></figure>
+
+<p>复原</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git -C "$(brew --repo)" remote set-url origin https://github.com/Homebrew/brew.git</span><br><span class="line"></span><br><span class="line">git -C "$(brew --repo homebrew/core)" remote set-url origin https://github.com/Homebrew/homebrew-core</span><br><span class="line"></span><br><span class="line">brew update</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="安装Chrome、星愿"><a href="#安装Chrome、星愿" class="headerlink" title="安装Chrome、星愿"></a>安装Chrome、星愿</h3><p>官网：<a href="https://www.google.cn/chrome/" target="_blank" rel="noopener">https://www.google.cn/chrome/</a></p>
+<p>星愿：<a href="http://www.twinkstar.cn/" target="_blank" rel="noopener">http://www.twinkstar.cn/</a></p>
+<ul>
+<li><p>扩展</p>
+<blockquote>
+<p>Camtd - Aria2下载管理器</p>
+<p>Chrome清理大师</p>
+<p>GitCodeTree</p>
+<p>Proxy SwitchyOmega</p>
+<p>uBlock Origin</p>
+<p>User-Agent Switcher for Chrome</p>
+<p>FeHelper</p>
+<p>广告净化器</p>
+<p>暴力猴</p>
+<p>沙拉查词（Chrome）</p>
+<p>达达划词翻译（星愿）</p>
+<p>oscnews（Chrome）</p>
+<p>Infinity 新标签页(Pro)（星愿）</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="uTools"><a href="#uTools" class="headerlink" title="uTools"></a>uTools</h3><p>地址：<a href="https://u.tools/" target="_blank" rel="noopener">https://u.tools/</a></p>
+<p>官方插件下载地址：<a href="https://api.u-tools.cn/Plugins/Developer/allPlugins" target="_blank" rel="noopener">https://api.u-tools.cn/Plugins/Developer/allPlugins</a></p>
+<p>一些个人开发者的插件已存在网盘中：<a href="https://hello19.github.io/">https://hello19.github.io/</a></p>
+<h3 id="macOS-菜单栏工具，一拖一点就能轻松隐藏图标：Dozer"><a href="#macOS-菜单栏工具，一拖一点就能轻松隐藏图标：Dozer" class="headerlink" title="macOS 菜单栏工具，一拖一点就能轻松隐藏图标：Dozer"></a>macOS 菜单栏工具，一拖一点就能轻松隐藏图标：Dozer</h3><p>可以直接利用 <a href="https://brew.sh/" target="_blank" rel="noopener">Homebrew Cask</a> 来安装，在终端（Terminal）输入以下代码即可：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask install dozer</span><br></pre></td></tr></table></figure>
+
+<p>也可以从 <a href="https://github.com/Mortennn/Dozer/releases/latest" target="_blank" rel="noopener">Dozer 的 GitHub Release 页面</a> 来下载，并手动安装 Dozer。</p>
+<p>参考链接-少数派：<a href="https://sspai.com/post/52826" target="_blank" rel="noopener">一个完全免费的 macOS 菜单栏工具，一拖一点就能轻松隐藏图标：Dozer | App+1</a></p>
+<h3 id="日历工具"><a href="#日历工具" class="headerlink" title="日历工具"></a>日历工具</h3><p><code>Itsycal</code> ： <a href="https://www.mowglii.com/itsycal/" target="_blank" rel="noopener">https://www.mowglii.com/itsycal/</a></p>
+<p>时间格式：MMMd日 E H:mm</p>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/2019-08-16-jgVchT.png" alt=""></p>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/2019-08-16-9c60tt.png" alt=""></p>
+<h3 id="分屏Magnet"><a href="#分屏Magnet" class="headerlink" title="分屏Magnet:"></a>分屏<code>Magnet</code>:</h3><h3 id="状态栏快速打开"><a href="#状态栏快速打开" class="headerlink" title="状态栏快速打开"></a>状态栏快速打开</h3><p><code>OpenInTerminal</code> ：<a href="https://github.com/Ji4n1ng/OpenInTerminal" target="_blank" rel="noopener">https://github.com/Ji4n1ng/OpenInTerminal</a></p>
+<h3 id="PopClip"><a href="#PopClip" class="headerlink" title="PopClip"></a>PopClip</h3><p><u>从下面的app get网站获取</u></p>
+<p>翻译插件：<a href="https://github.com/wizyoung/googletranslate.popclipext" target="_blank" rel="noopener">https://github.com/wizyoung/googletranslate.popclipext</a></p>
+<h3 id="切换深浅色模式"><a href="#切换深浅色模式" class="headerlink" title="切换深浅色模式"></a>切换深浅色模式</h3><p><code>Gray</code>：<a href="https://github.com/zenangst/Gray" target="_blank" rel="noopener">https://github.com/zenangst/Gray</a></p>
+<h3 id="系统监控"><a href="#系统监控" class="headerlink" title="系统监控"></a>系统监控</h3><p><code>monity</code>：<a href="https://monityapp.com/" target="_blank" rel="noopener">https://monityapp.com/</a></p>
+<h3 id="安装office365"><a href="#安装office365" class="headerlink" title="安装office365"></a>安装office365</h3><p>登录<a href="portal.office.com">官网</a>，然后下载安装，登录薅来的office账号，一切完美</p>
+<h3 id="搜狗输入法皮肤"><a href="#搜狗输入法皮肤" class="headerlink" title="搜狗输入法皮肤"></a>搜狗输入法皮肤</h3><p>搜狗输入法在macOS上还算是比较老实的，没有任何广告弹窗，但是至于收不收集用户隐私信息，那就不知道了，总之是现阶段使用最顺手的输入法了，从<a href="https://pinyin.sogou.com/mac/" target="_blank" rel="noopener">官网</a>下载，解压后是二进制安装程序，建议拖到<code>Application</code>后再安装</p>
+<p><a href="https://github.com/xiaochunjimmy/Sogou-Input-Skin" target="_blank" rel="noopener">https://github.com/xiaochunjimmy/Sogou-Input-Skin</a></p>
+<h3 id="图床工具"><a href="#图床工具" class="headerlink" title="图床工具"></a>图床工具</h3><p>图床工具选择的是<a href="https://github.com/gee1k/uPic" target="_blank" rel="noopener">uPic</a>，自身集成了<code>GitHub</code>和<code>Gitee</code>，很方便，而且还能自定义服务器上传文件，教程都在主页</p>
+<p>同样功能的还有<a href="https://github.com/Molunerfinn/PicGo" target="_blank" rel="noopener">PicGO</a></p>
+<h3 id="MarkDown工具"><a href="#MarkDown工具" class="headerlink" title="MarkDown工具"></a>MarkDown工具</h3><p>使用简洁明了的<a href="https://typora.io/" target="_blank" rel="noopener">Typora</a></p>
+<h3 id="增强系统QuickLook"><a href="#增强系统QuickLook" class="headerlink" title="增强系统QuickLook"></a>增强系统QuickLook</h3><p><code>brew cask install BetterZipQL qlimagesize qlmarkdown QuickLookPrettyJSON qlstephen QLvideo QLColorCode</code></p>
+<p>具体在这里：<a href="https://github.com/haokaiyang/Mac-QuickLook" target="_blank" rel="noopener">https://github.com/haokaiyang/Mac-QuickLook</a></p>
+<h3 id="IntelliJ-IDEA"><a href="#IntelliJ-IDEA" class="headerlink" title="IntelliJ IDEA"></a>IntelliJ IDEA</h3><ul>
+<li><p>汉化：<a href="https://github.com/pingfangx/TranslatorX" target="_blank" rel="noopener">https://github.com/pingfangx/TranslatorX</a></p>
+</li>
+<li><p>修改快捷键，使用的是<code>eclipse</code>快捷键，但是在mac环境下<code>Ctrl+鼠标左键</code>是菜单键，相当于鼠标右键，所以需要修改一下，改成<code>command+鼠标左键</code></p>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/2019-07-22-FTdrCn.png" alt="pic"></p>
+</li>
+<li><p>修改注释位置</p>
+<p><img src="https://gitee.com/uibooker/ImgSync/raw/master/img/2019-07-22-j7JxOQ.png" alt="pic"></p>
+</li>
+</ul>
+<h3 id="数据库软件"><a href="#数据库软件" class="headerlink" title="数据库软件"></a>数据库软件</h3><p><a href="https://github.com/cniPatch/NavicatPremium" target="_blank" rel="noopener">https://github.com/cniPatch/NavicatPremium</a></p>
+<p><a href="https://github.com/DoubleLabyrinth/navicat-keygen" target="_blank" rel="noopener">https://github.com/DoubleLabyrinth/navicat-keygen</a></p>
+<h3 id="SFTP工具"><a href="#SFTP工具" class="headerlink" title="SFTP工具"></a>SFTP工具</h3><p><code>Cyberduck</code>：<a href="https://cyberduck.io/" target="_blank" rel="noopener">https://cyberduck.io/</a></p>
+<h3 id="生成SSH-Key"><a href="#生成SSH-Key" class="headerlink" title="生成SSH Key"></a>生成SSH Key</h3><blockquote>
+<p>SSH是一个专为远程登录会话和其他网络服务提供安全性的协议。默认状态下SSH链接是需要密码认证的，可以通过添加系统认证（即公钥-私钥）的修改，修改后系统间切换可以避免密码输入和SSH认证。</p>
+</blockquote>
+<ul>
+<li><p>查看本地是否存在SSH KEY</p>
+<p><code>ls -al ~/.ssh</code></p>
+<blockquote>
+<p><code>No such file or directory</code>证明本地没有生成的SSH Key</p>
+<p><code>id_rsa        id_rsa.pub</code>出现这两个文件则证明已经存在SSH KEY</p>
+</blockquote>
+</li>
+<li><p>生成秘钥</p>
+<p><code>ssh-keygen -t rsa</code></p>
+<blockquote>
+<p>-t 的意思是选择kye的type。分别有 RSA 和 DSA 两种</p>
+</blockquote>
+<p>第一次确认key的生成位置，第二次是密码，第三次是确认密码，建议三次回车直接生成</p>
+<p>按照默认，私钥被放在了~/.ssh/id_rsa 这个文件里，而公钥被放在了 ~/.ssh/id_rsa.pub 这个文件里</p>
+</li>
+<li><p>将秘钥加到服务器</p>
+<p>服务器添加的秘钥都在<code>~/.ssh/authorized_keys</code>这里面，把<code>id_rsa.pub</code>这里面的内容复制粘贴到<code>authorized_keys</code>里就OK了</p>
+<p>或者在复制完<code>id_rsa.pub</code>里的内容后执行命令：<code>cat id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys</code></p>
+</li>
+</ul>
+<p><a href="https://blog.iljw.me/2019/05/jsdelivr-cdn-github.html" target="_blank" rel="noopener">使用 jsDelivr CDN 加速 Github 仓库的图片，以作为博客的图床</a></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="一些软件get"><a href="#一些软件get" class="headerlink" title="一些软件get"></a>一些软件get</h3><p><a href="http://app4mac.net/" target="_blank" rel="noopener">http://app4mac.net/</a></p>
+<p><a href="https://macapp.xyz/" target="_blank" rel="noopener">https://macapp.xyz/</a></p>
+<p><a href="https://nmac.to/" target="_blank" rel="noopener">https://nmac.to/</a></p>
+<p><a href="https://www.naodai.org/" target="_blank" rel="noopener">https://www.naodai.org/</a></p>
+<p><a href="https://cmacapps.com/" target="_blank" rel="noopener">https://cmacapps.com/</a></p>
+<p><a href="https://www.waitsun.com/" target="_blank" rel="noopener">麦克派</a></p>
+<p><a href="https://www.fxxkmakeding.xyz/" target="_blank" rel="noopener">fuckmakeding</a></p>
+<p><a href="http://mac-torrent-download.net/" target="_blank" rel="noopener">Mac Torrent</a></p>
+<h4 id="附："><a href="#附：" class="headerlink" title="附："></a>附：</h4><p>Awesome-mac：<a href="https://github.com/jaywcjlove/awesome-mac/blob/master/README-zh.md" target="_blank" rel="noopener">https://github.com/jaywcjlove/awesome-mac/blob/master/README-zh.md</a></p>
+<p>Mac 记住ssh用户名密码的expect 脚本：<a href="https://blog.csdn.net/u011348213/article/details/84818625" target="_blank" rel="noopener">https://blog.csdn.net/u011348213/article/details/84818625</a></p>
+<p>我在Mac上都用什么：<a href="https://www.cnblogs.com/imzhizi/p/my-apps-on-mac.html" target="_blank" rel="noopener">https://www.cnblogs.com/imzhizi/p/my-apps-on-mac.html</a></p>
+<p>更换各种源：<a href="https://blog.csdn.net/weixin_41490841/article/details/79091052" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41490841/article/details/79091052</a></p>
+<p>clover的github：<a href="https://github.com/Dids/clover-builder/releases" target="_blank" rel="noopener">https://github.com/Dids/clover-builder/releases</a></p>
+<p>weChatExtension：<a href="https://github.com/MustangYM/WeChatExtension-ForMac" target="_blank" rel="noopener">https://github.com/MustangYM/WeChatExtension-ForMac</a></p>
+<p>ADHost:<a href="https://github.com/otobtc/ADhosts" target="_blank" rel="noopener">https://github.com/otobtc/ADhosts</a></p>
+<p>host:<a href="https://gitee.com/Mosiki/github/raw/master/github_hosts.txt" target="_blank" rel="noopener">https://gitee.com/Mosiki/github/raw/master/github_hosts.txt</a></p>
+
+    </div>
+    
+        <hr class="fhr">
+        <div id="vcomments"></div>
+    
+</div>
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="">
+<input type="hidden" id="valine_appKey" value="">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

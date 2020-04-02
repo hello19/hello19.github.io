@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Text_Wong
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Java8时间工具类
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <p>Java 8另一个新增的重要特性就是引入了新的时间和日期API，它们被包含在<code>java.time</code>包中。借助新的时间和日期API可以以更简洁的方法处理时间和日期。</p>
+<blockquote>
+<p>在Java 8之前，所有关于时间和日期的API都存在各种使用方面的缺陷，主要有：</p>
+</blockquote>
+<ol>
+<li>Java的<code>java.util.Date</code>和<code>java.util.Calendar</code>类易用性差，不支持时区，而且他们都不是线程安全的；</li>
+<li>用于格式化日期的类<code>DateFormat</code>被放在<code>java.text</code>包中，它是一个抽象类，所以我们需要实例化一个<code>SimpleDateFormat</code>对象来处理日期格式化，并且<code>DateFormat</code>也是非线程安全，这意味着如果你在多线程程序中调用同一个<code>DateFormat</code>对象，会得到意想不到的结果。</li>
+<li>对日期的计算方式繁琐，而且容易出错，因为月份是从0开始的，从<code>Calendar</code>中获取的月份需要加一才能表示当前月份。</li>
+</ol>
+<p>由于以上这些问题，出现了一些三方的日期处理框架，例如Joda-Time，date4j等开源项目。但是，Java需要一套标准的用于处理时间和日期的框架，于是Java 8中引入了新的日期API。新的日期API是<a href="https://jcp.org/en/jsr/detail?id=310" target="_blank" rel="noopener">JSR-310</a>规范的实现，Joda-Time框架的作者正是JSR-310的规范的倡导者，所以能从Java 8的日期API中看到很多Joda-Time的特性。</p>
+<h2 id="Java-8日期-时间类"><a href="#Java-8日期-时间类" class="headerlink" title="Java 8日期/时间类"></a>Java 8日期/时间类</h2><p>Java 8的日期和时间类包含<code>LocalDate</code>、<code>LocalTime</code>、<code>Instant</code>、<code>Duration</code>以及<code>Period</code>，这些类都包含在<code>java.time</code>包中，下面我们看看这些类的用法。</p>
+<h3 id="LocalDate和LocalTime"><a href="#LocalDate和LocalTime" class="headerlink" title="LocalDate和LocalTime"></a><code>LocalDate</code>和<code>LocalTime</code></h3><p><code>LocalDate</code>类表示一个具体的日期，但不包含具体时间，也不包含时区信息。可以通过<code>LocalDate</code>的静态方法<code>of()</code>创建一个实例，<code>LocalDate</code>也包含一些方法用来获取年份，月份，天，星期几等：    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">LocalDate localDate = LocalDate.of(<span class="number">2017</span>, <span class="number">1</span>, <span class="number">4</span>);     <span class="comment">// 初始化一个日期：2017-01-04</span></span><br><span class="line"><span class="keyword">int</span> year = localDate.getYear();                     <span class="comment">// 年份：2017</span></span><br><span class="line">Month month = localDate.getMonth();                 <span class="comment">// 月份：JANUARY</span></span><br><span class="line"><span class="keyword">int</span> dayOfMonth = localDate.getDayOfMonth();         <span class="comment">// 月份中的第几天：4</span></span><br><span class="line">DayOfWeek dayOfWeek = localDate.getDayOfWeek();     <span class="comment">// 一周的第几天：WEDNESDAY</span></span><br><span class="line"><span class="keyword">int</span> length = localDate.lengthOfMonth();             <span class="comment">// 月份的天数：31</span></span><br><span class="line"><span class="keyword">boolean</span> leapYear = localDate.isLeapYear();          <span class="comment">// 是否为闰年：false</span></span><br></pre></td></tr></table></figure>
+
+
+<p>也可以调用静态方法<code>now()</code>来获取当前日期：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LocalDate now = LocalDate.now();</span><br></pre></td></tr></table></figure>
+
+<p><code>LocalTime</code>和<code>LocalDate</code>类似，他们之间的区别在于<code>LocalDate</code>不包含具体时间，而<code>LocalTime</code>包含具体时间，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LocalTime localTime = LocalTime.of(<span class="number">17</span>, <span class="number">23</span>, <span class="number">52</span>);     <span class="comment">// 初始化一个时间：17:23:52</span></span><br><span class="line"><span class="keyword">int</span> hour = localTime.getHour();                     <span class="comment">// 时：17</span></span><br><span class="line"><span class="keyword">int</span> minute = localTime.getMinute();                 <span class="comment">// 分：23</span></span><br><span class="line"><span class="keyword">int</span> second = localTime.getSecond();                 <span class="comment">// 秒：52</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+    
+        <hr class="fhr">
+        <div id="vcomments"></div>
+    
+</div>
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="">
+<input type="hidden" id="valine_appKey" value="">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>
